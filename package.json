@@ -2,9 +2,11 @@
   "name": "k121",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "./backend/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+	"start": "node ./backend/app.js",
+	"test": "echo \"Error: no test specified\" && exit 1",
+	"heroku-postbuild": "npm --prefix ./frontend install && npm --prefix ./backend install"
   },
   "author": "Julio Diniz",
   "license": "ISC",
