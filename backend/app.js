@@ -6,11 +6,11 @@ var sorteio = require('./routes/sorteio');
 var app = express();
 
 var mongoose = require('mongoose');
-var devDBUrl = 'mongodb://localhost/k121';
+// var devDBUrl = 'mongodb://localhost/k121';
 var herokuDBUrl = 'mongodb://heroku_9bljt28d:5t6gojlpjred19bdd5o4c9gipu@ds121898.mlab.com:21898/heroku_9bljt28d';
-// var mongoDB = process.env.MONGODB_URI || devDBUrl;
+var mongoDB = process.env.MONGODB_URI || devDBUrl || herokuDBUrl;
 
-mongoose.connect(devDBUrl || herokuDBUrl);
+mongoose.connect(mongoDB);
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
