@@ -2,6 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 
 var pessoa = require('./routes/pessoa');
+var sorteio = require('./routes/sorteio');
 var app = express();
 
 var mongoose = require('mongoose');
@@ -16,6 +17,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/pessoas', pessoa);
+app.use('/sorteio', sorteio);
 app.use(express.static(__dirname + '/../frontend'));
 
 var port = 8989;

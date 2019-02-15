@@ -2,16 +2,16 @@ var Pessoa = require('../models/pessoa');
 
 exports.create = (req, res, next) => {
 
-    var pessoa = new Pessoa({
+	var pessoa = new Pessoa({
 
 		nome: req.body.nome,
 		email: req.body.email
 
 	});
 
-    pessoa.save((err) => {
+	pessoa.save((err) => {
 
-        if(err) {
+		if (err) {
 
 			return next(err);
 
@@ -25,9 +25,9 @@ exports.create = (req, res, next) => {
 
 exports.getInfo = (req, res, next) => {
 
-    Pessoa.findById(req.params.id, (err, pessoa) => {
+	Pessoa.findById(req.params.id, (err, pessoa) => {
 
-        if(err) {
+		if (err) {
 
 			return next(err);
 
@@ -41,9 +41,9 @@ exports.getInfo = (req, res, next) => {
 
 exports.getAll = (req, res, next) => {
 
-    Pessoa.find({}, (err, pessoas) => {
+	Pessoa.find({}, (err, pessoas) => {
 
-        if(err) {
+		if (err) {
 
 			return next(err);
 
@@ -57,9 +57,11 @@ exports.getAll = (req, res, next) => {
 
 exports.update = (req, res, next) => {
 
-    Pessoa.findOneAndUpdate(req.params.id, {$set: req.body}, (err, pessoa) => {
+	delete req.body._id;
 
-        if(err) {
+	Pessoa.findOneAndUpdate({ "_id": req.params.id }, { $set: req.body }, (err, pessoa) => {
+
+		if (err) {
 
 			return next(err);
 
@@ -73,15 +75,31 @@ exports.update = (req, res, next) => {
 
 exports.delete = (req, res, next) => {
 
-    Pessoa.findOneAndDelete(req.params.id, (err) => {
+	Pessoa.findOneAndDelete({ "_id": req.params.id }, (err) => {
 
-        if(err) {
+		if (err) {
 
 			return next(err);
 
 		}
 
 		res.send('Pessoa excluida com sucesso.');
+
+	});
+
+};
+
+exports.doUpdate = (obj) => {
+
+	return new Promise((resolve, reject) => {
+
+		let pessoaId = obj.id || obj._id
+
+		let objToSave = {nome: obj.nome, email: obj.email, amigo: obj.amigo};
+
+		Pessoa.findOneAndUpdate({ "_id": pessoaId }, { $set: objToSave })
+			.then(result => resolve())
+			.catch(err => reject(err))
 
 	});
 

@@ -1,0 +1,48 @@
+<script src="public/jquery/jquery-3.3.1.min.js"></script>
+<script src="public/angular/angular.min.js"></script>
+<script src="public/bootstrap/bootstrap.min.js"></script>
+<script src="public/angular-resource/angular-resource.min.js"></script>
+<script src="public/angular-route/angular-route.min.js"></script>
+
+<script src="scripts/app.js"></script>
+<script src="scripts/controllers/main.js"></script>
+<script src="scripts/services/pessoaService.js"></script>
+<script src="scripts/controllers/pessoa.js"></script>
+<script src="scripts/services/sorteioService.js"></script>
+
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width">
+	<link rel="stylesheet" href="public/bootstrap/bootstrap.min.css" />
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="styles/style.css" />
+</head>
+
+<body ng-app="k121" ng-controller="AppCtrl">
+
+	<nav class="navbar navbar-light bg-light">
+		<a class="navbar-brand" href="#">K121</a>
+		<span class="float-right"> Julio Cezar Santos Diniz </span>
+	</nav>
+
+	<div class="container">
+
+		<div class="alert alert-{{mensagem.tipo}} alert-dismissible" role="alert" ng-show="mensagem.show">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close" ng-click="mensagem.show = false">
+				<span aria-hidden="true"> × </span>
+			</button>
+			{{mensagem.texto}}
+		</div>
+
+		<div ng-view=""></div>
+
+	</div>
+
+</body>
+
+<html>

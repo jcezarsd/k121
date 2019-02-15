@@ -1,0 +1,44 @@
+<div class="card">
+	<div class="card-body">
+		<h3 class="card-title">Contatos</h3>
+		<div class="row">
+
+			<div class="col-12">
+				<button ng-click="goTo('pessoa')" class="btn btn-primary float-right">
+					<i class="fa fa-plus"></i>
+					<span class="button-text">Cadastrar</span>
+				</button>
+				<button  ng-click="sortear()" class="btn btn-success float-left" ng-disabled="pessoas.length < 2">
+					<i class="fa fa-random"></i>
+					<span class="button-text">Sortear</span>
+				</button>
+			</div>
+
+		</div>
+		<br>
+		<table class="table table-hover" ng-show="pessoas.length">
+			<caption>
+				<p ng-show="pessoas.length">Pessoas cadastradas: {{pessoas.length}}</p>
+			</caption>
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Nome</th>
+					<th>Email</th>
+					<th>Ação</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="pessoa in pessoas | filter: filtro" id="_pessoa">
+					<th scope="row">{{$index + 1}}</th>
+					<td>{{pessoa.nome}}</td>
+					<td>{{pessoa.email}}</td>
+					<td>
+						<a class="fa fa-pencil" ng-href="#/pessoa/{{pessoa._id}}" title="Editar"></a>
+						<a class="fa fa-trash" ng-click="remover(pessoa);" title="Excluir"></a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
