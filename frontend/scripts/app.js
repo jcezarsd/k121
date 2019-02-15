@@ -78,4 +78,4 @@ angular
 
 	]);
 
-const API_URL = "http://localhost:8989/";
+const API_URL = "/";
