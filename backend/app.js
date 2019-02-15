@@ -6,9 +6,8 @@ var sorteio = require('./routes/sorteio');
 var app = express();
 
 var mongoose = require('mongoose');
-// var devDBUrl = 'mongodb://localhost/k121';
-var herokuDBUrl = 'mongodb://heroku_9bljt28d:5t6gojlpjred19bdd5o4c9gipu@ds121898.mlab.com:21898/heroku_9bljt28d';
-var mongoDB = process.env.MONGODB_URI || devDBUrl || herokuDBUrl;
+var devDBUrl = 'mongodb://localhost/k121';
+var mongoDB = process.env.MONGODB_URI || devDBUrl;
 
 mongoose.connect(mongoDB);
 mongoose.Promise = global.Promise;
@@ -27,6 +26,6 @@ app.get('*', (req, res) => {
 	res.sendFile('index.html', { root: __dirname + '/../frontend' });
 });
 
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
 	console.log('Server is up and running on port number ' + port);
 });
