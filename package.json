@@ -6,7 +6,8 @@
   "scripts": {
 	"start": "node ./backend/app.js",
 	"test": "echo \"Error: no test specified\" && exit 1",
-	"heroku-postbuild": "npm --prefix ./frontend install && npm --prefix ./backend install"
+	"heroku-postbuild": "npm --prefix ./backend install",
+	"deps": "npm run heroku-postbuild"
   },
   "author": "Julio Diniz",
   "license": "ISC",
