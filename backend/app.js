@@ -7,7 +7,7 @@ var app = express();
 
 var mongoose = require('mongoose');
 var dev_db_url = 'mongodb://localhost/k121';
-var mongoDB = process.env.MONGODB_URI || dev_db_url;
+var mongoDB = ENV['MONGODB_URI'] || dev_db_url;
 
 mongoose.connect(mongoDB);
 mongoose.Promise = global.Promise;
